@@ -2,7 +2,7 @@ import { useState } from "react"
 function App() {  
     const apiKey = "48519959471b4118c8a96ac375112494"
     const [city, setCity] = useState('')
-    console.log(city)
+    // console.log(city)
 
     const cityElement = document.querySelector("#city") as HTMLInputElement;
     const tempElement = document.querySelector("#temperature span") as HTMLInputElement;
@@ -17,7 +17,7 @@ function App() {
         const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}&lang=pt_br`
         const res = await fetch(apiWeatherURL)
         const data = await res.json()
-        console.log(data)
+        // console.log(data)
         return data
     }
 
