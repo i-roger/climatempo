@@ -34,21 +34,20 @@ function App() {
     };
 
   return (
-    <>
     <div className="flex flex-col justify-center items-center gap-10">
-        <div className="flex flex-col text-center px-4">
+        <div className="flex flex-col items-center text-center p-8">
             <p className="text-4xl font-semibold">Clima Tempo</p>
-            <p className="text-1xl font-semibold">Aqui você encontra informações sobre Temperatura, Umidade e Vento em tempo real!</p>
+            <p className="px-8 font-semibold">Aqui você encontra informações sobre Temperatura, Umidade e Vento em tempo real!</p>
         </div>
-        <div className="form  drop-shadow-xl">
-            <div className="form-input-container flex justify-center gap-4 bg-zinc-500 px-8 py-4 rounded-t-xl">
-                <input className="px-2 rounded-xl text-black" type="text" placeholder="Digite O nome da cidade" id="city-input" onKeyDown={(e) => {(e.key === 'Enter' ? showWeatherData() : null )}} onChange={(e) => setCity(e.target.value)}/>
-                <button className="p-4 rounded-xl bg-zinc-400 hover:bg-zinc-600" id="search" onClick={showWeatherData}>
+        <div className="form flex flex-col drop-shadow-xl gap-10">
+            <div className="flex justify-center gap-4 bg-zinc-500 px-8 py-4 rounded-xl scale-95 hover:scale-110 transition">
+                <input className="px-2 rounded-xl text-black" type="text" placeholder="Digite o nome da cidade" id="city-input" onKeyDown={(e) => {(e.key === 'Enter' ? showWeatherData() : null )}} onChange={(e) => setCity(e.target.value)}/>
+                <button className="p-4 rounded-xl bg-zinc-400 hover:bg-zinc-600 transition" id="search" onClick={showWeatherData}>
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
 
-            <div id="weather-data" className="flex flex-col items-center weather-data hide text-xl bg-zinc-500 rounded-b-xl">
+            <div id="weather-data" className="flex flex-col items-center weather-data hide text-xl bg-zinc-500 rounded-xl">
                 <h2 className="flex items-center gap-4">
                     <i className="fa-solid fa-location-dot"></i>
                     <span id="city"></span>
@@ -72,14 +71,14 @@ function App() {
             </div>
         </div>
         <div className="flex flex-col text-center px-4 gap-10">
-            <div className="flex gap-x-4 drop-shadow-xl">
-                <a className="bg-indigo-600 hover:bg-indigo-700 hover:scale-95 transition rounded-xl px-8 py-4" href="https://github.com/i-roger">GitHub</a>
-                <a className="bg-blue-600 hover:bg-blue-700 hover:scale-95 transition rounded-xl px-8 py-4" href="https://www.linkedin.com/in/matheus-roger-22555b235/">LinkedIn</a>
+            <div className="flex gap-4 drop-shadow-xl">
+                <a className="bg-indigo-600 hover:bg-indigo-700 hover:scale-95 transition rounded-xl px-8 py-4 flex items-center gap-2" href="https://github.com/i-roger">
+                    <i className="fa-brands fa-github fa-2x"></i>GitHub</a>
+                <a className="bg-blue-600 hover:bg-blue-700 hover:scale-95 transition rounded-xl px-8 py-4 flex items-center gap-2" href="https://www.linkedin.com/in/matheus-roger-22555b235/"><i className="fa-brands fa-linkedin fa-2x"></i>LinkedIn</a>
             </div>
             <p className="text-1xl font-semibold">Desenvolvido por Matheus Roger</p>
         </div>
     </div>
-    </>
   )
 }
 
