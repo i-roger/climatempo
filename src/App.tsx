@@ -47,7 +47,6 @@ function App() {
             },
         });
         const response= await data.json();
-        console.log(response);
         document.body.setAttribute("background", response.photos[0].src.original);
 
         if (weatherContainerHide){
