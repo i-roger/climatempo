@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { createClient } from "pexels"
 
 function App() {  
-    const apiKey = "48519959471b4118c8a96ac375112494"
+    const apiKey = "48519959471b4118c8a96ac375112494"; // WeatherAPI
+
     const [city, setCity] = useState('')
 
     const cityElement = document.querySelector("#city") as HTMLInputElement;
@@ -13,8 +13,6 @@ function App() {
     const humidityElement = document.querySelector("#humidity span") as HTMLInputElement;
     const windElement = document.querySelector("#wind span") as HTMLInputElement;
     const weatherContainerHide = document.querySelector('.hide') as HTMLInputElement;
-
-    const backgroundPexels = document.querySelector('#backgroundPexels') as HTMLInputElement;
 
     async function getWeatherData() {
         const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}&lang=pt_br`
@@ -27,27 +25,34 @@ function App() {
     async function showWeatherData() {
         const data = await getWeatherData();
         cityElement.innerText = data.name;
-        tempElement.innerText = parseInt(data.main.temp); // parseInt(data.main.temp) <-- modo anterior!
+        tempElement.innerText = data.main.temp.toFixed();
         descElement.innerText = data.weather[0].description;
         weatherIconElement.setAttribute("src",`https://openweathermap.org/img/wn/${data.weather[0].icon}.png`); //Uso do setAtribute para modificar um atributo do ELEMENTO
         countryElement.setAttribute("src", `https://flagsapi.com/${data.sys.country}/flat/64.png`);
         humidityElement.innerText = `${data.main.humidity}%`;
         windElement.innerText = `${data.wind.speed}km/h`;
         photoSearch()
+
     };
 
-    async function photoSearch() {
-        const client = createClient('qUS6vAWGQHZmmR9kHfuHun5wyNhMnVPcfjeissgM6lNXiK1opEtaklq5')
-        const query = city
-        const search = await client.photos.search({ query, per_page: 1})
-            .then((res) => res);
 
-        document.body.setAttribute("background", search.photos[0].src.original);
-        console.log(search)
+    async function photoSearch(){
+        const query = city
+        const data= await fetch(`https://api.pexels.com/v1/search?query=${query}&page=1`, 
+        {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                Authorization: 'qUS6vAWGQHZmmR9kHfuHun5wyNhMnVPcfjeissgM6lNXiK1opEtaklq5',
+            },
+        });
+        const response= await data.json();
+        console.log(response);
+        document.body.setAttribute("background", response.photos[0].src.original);
+
         if (weatherContainerHide){
-            weatherContainerHide.classList.remove('hide');
+                    weatherContainerHide.classList.remove('hide');
         }
-        
     }
 
   return (
