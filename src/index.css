@@ -9,7 +9,7 @@
 }
 
 body {
-    @apply flex my-20 justify-center items-center bg-zinc-700 text-white;
+    @apply h-screen bg-cover bg-zinc-700 text-white;
 }
 
 @keyframes smooth-appear {
