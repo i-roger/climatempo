@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: none;
+}
+
+body {
+    @apply h-screen bg-cover bg-zinc-700 text-white;
+}
+
+@keyframes smooth-appear {
+
+    to{
+      opacity:1;
+    }
+  }
+
+.weather-data {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    padding: 20px;
+    opacity:0;
+    animation: smooth-appear 1s ease forwards;
+    
+}
+
+.hide {
+    display:none;
+}
